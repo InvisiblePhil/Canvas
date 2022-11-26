@@ -56,11 +56,11 @@ namespace Blazor.Extensions
         public Action<PointerEventArgs> OnPointerMove { get; set; }
 
         protected readonly string Id = Guid.NewGuid().ToString();
-        protected ElementReference _canvasRef;
+        protected ElementReference canvasRef;
 
-        public ElementReference CanvasReference => this._canvasRef;
+        public ElementReference CanvasReference => this.canvasRef;
 
         [Inject]
-        internal IJSRuntime JSRuntime { get; set; }
+        internal IJSRuntime JsRuntime { get; set; }
     }
 }

@@ -1,24 +1,24 @@
-using Blazor.Extensions.Canvas.Canvas2D;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
+using Blazor.Extensions.Canvas2D;
 
 namespace Blazor.Extensions.Canvas.Test.ClientSide.Pages
 {
     public class IndexComponent : ComponentBase
     {
-        private Canvas2DContext _context;
+        private Canvas2DContext context;
 
-        protected BECanvasComponent _canvasReference;
+        protected BECanvasComponent canvasReference;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            this._context = await this._canvasReference.CreateCanvas2DAsync();
-            await this._context.SetFillStyleAsync("green");
+            this.context = await this.canvasReference.CreateCanvas2DAsync();
+            await this.context.SetFillStyleAsync("green");
 
-            await this._context.FillRectAsync(10, 100, 100, 100);
+            await this.context.FillRectAsync(10, 100, 100, 100);
 
-            await this._context.SetFontAsync("48px serif");
-            await this._context.StrokeTextAsync("Hello Blazor!!!", 10, 100);
+            await this.context.SetFontAsync("48px serif");
+            await this.context.StrokeTextAsync("Hello Blazor!!!", 10, 100);
         }
     }
 }

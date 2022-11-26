@@ -5,6 +5,7 @@
     <Description>HTML5 Canvas API implementation for ASP.NET Core Blazor.</Description>
     <PackageId>Blazor.Extensions.Canvas</PackageId>
     <PackageVersion>1.1.1</PackageVersion>
+    <RootNamespace>Blazor.Extensions</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>

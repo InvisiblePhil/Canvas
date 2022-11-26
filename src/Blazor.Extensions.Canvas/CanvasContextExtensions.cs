@@ -1,6 +1,6 @@
-using Blazor.Extensions.Canvas.Canvas2D;
-using Blazor.Extensions.Canvas.WebGL;
 using System.Threading.Tasks;
+using Blazor.Extensions.Canvas2D;
+using Blazor.Extensions.WebGL;
 
 namespace Blazor.Extensions
 {
@@ -16,24 +16,24 @@ namespace Blazor.Extensions
             return await new Canvas2DContext(canvas).InitializeAsync().ConfigureAwait(false) as Canvas2DContext;
         }
 
-        public static WebGLContext CreateWebGL(this BECanvasComponent canvas)
+        public static WebGlContext CreateWebGl(this BECanvasComponent canvas)
         {
-            return new WebGLContext(canvas).InitializeAsync().GetAwaiter().GetResult() as WebGLContext;
+            return new WebGlContext(canvas).InitializeAsync().GetAwaiter().GetResult() as WebGlContext;
         }
 
-        public static async Task<WebGLContext> CreateWebGLAsync(this BECanvasComponent canvas)
+        public static async Task<WebGlContext> CreateWebGlAsync(this BECanvasComponent canvas)
         {
-            return await new WebGLContext(canvas).InitializeAsync().ConfigureAwait(false) as WebGLContext;
+            return await new WebGlContext(canvas).InitializeAsync().ConfigureAwait(false) as WebGlContext;
         }
 
-        public static WebGLContext CreateWebGL(this BECanvasComponent canvas, WebGLContextAttributes attributes)
+        public static WebGlContext CreateWebGl(this BECanvasComponent canvas, WebGlContextAttributes attributes)
         {
-            return new WebGLContext(canvas, attributes).InitializeAsync().GetAwaiter().GetResult() as WebGLContext;
+            return new WebGlContext(canvas, attributes).InitializeAsync().GetAwaiter().GetResult() as WebGlContext;
         }
 
-        public static async Task<WebGLContext> CreateWebGLAsync(this BECanvasComponent canvas, WebGLContextAttributes attributes)
+        public static async Task<WebGlContext> CreateWebGlAsync(this BECanvasComponent canvas, WebGlContextAttributes attributes)
         {
-            return await new WebGLContext(canvas, attributes).InitializeAsync().ConfigureAwait(false) as WebGLContext;
+            return await new WebGlContext(canvas, attributes).InitializeAsync().ConfigureAwait(false) as WebGlContext;
         }
     }
 }

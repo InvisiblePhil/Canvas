@@ -1,6 +1,6 @@
-namespace Blazor.Extensions.Canvas.WebGL
+namespace Blazor.Extensions.WebGL
 {
-    public class WebGLContextAttributes
+    public class WebGlContextAttributes
     {
         public bool Alpha { get; set; } = true;
         public bool Antialias { get; set; } = true;
@@ -8,52 +8,52 @@ namespace Blazor.Extensions.Canvas.WebGL
         public bool PremultipliedAlpha { get; set; } = true;
         public bool PreserveDrawingBuffer { get; set; } = false;
         public bool Stencil { get; set; } = false;
-        public string PowerPreference { get; set; } = POWER_PREFERENCE_DEFAULT;
+        public string PowerPreference { get; set; } = PowerPreferenceDefault;
         public bool FailIfMajorPerformanceCaveat { get; set; } = false;
 
-        public const string POWER_PREFERENCE_DEFAULT = "default";
-        public const string POWER_PREFERENCE_HIGH_PERFORMANCE = "high-performance";
-        public const string POWER_PREFERENCE_LOW_POWER = "low-power";
+        public const string PowerPreferenceDefault = "default";
+        public const string PowerPreferenceHighPerformance = "high-performance";
+        public const string PowerPreferenceLowPower = "low-power";
     }
 
-    public class WebGLShaderPrecisionFormat
+    public class WebGlShaderPrecisionFormat
     {
         public int RangeMin { get; set; }
         public int RangeMax { get; set; }
         public int Precision { get; set; }
     }
 
-    public class WebGLActiveInfo
+    public class WebGlActiveInfo
     {
         public string Name { get; set; } //todo: make readonly
         public int Size { get; set; }
         public UniformType Type { get; set; }
     }
 
-    public class WebGLObject
+    public class WebGlObject
     {
-        public string WebGLType { get; set; }
+        public string WebGlType { get; set; }
         public int Id { get; set; }
     }
 
-    public class WebGLBuffer : WebGLObject
+    public class WebGlBuffer : WebGlObject
     { }
 
-    public class WebGLFramebuffer : WebGLObject
+    public class WebGlFramebuffer : WebGlObject
     { }
 
-    public class WebGLRenderbuffer : WebGLObject
+    public class WebGlRenderbuffer : WebGlObject
     { }
 
-    public class WebGLTexture : WebGLObject
+    public class WebGlTexture : WebGlObject
     { }
 
-    public class WebGLProgram : WebGLObject
+    public class WebGlProgram : WebGlObject
     { }
 
-    public class WebGLShader : WebGLObject
+    public class WebGlShader : WebGlObject
     { }
 
-    public class WebGLUniformLocation : WebGLObject
+    public class WebGlUniformLocation : WebGlObject
     { }
 }

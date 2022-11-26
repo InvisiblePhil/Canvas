@@ -1,453 +1,453 @@
-namespace Blazor.Extensions.Canvas.WebGL
+namespace Blazor.Extensions.WebGL
 {
     public enum BufferBits
     {
-        COLOR_BUFFER_BIT = 0x4000,
-        DEPTH_BUFFER_BIT = 0x100,
-        STENCIL_BUFFER_BIT = 0x400
+        ColorBufferBit = 0x4000,
+        DepthBufferBit = 0x100,
+        StencilBufferBit = 0x400
     }
 
     public enum Primitive
     {
-        POINTS = 0,
-        LINES = 1,
-        LINE_LOOP = 2,
-        LINE_STRIP = 3,
-        TRIANGLES = 4,
-        TRIANGLE_STRIP = 5,
-        TRIANGLE_FAN = 6
+        Points = 0,
+        Lines = 1,
+        LineLoop = 2,
+        LineStrip = 3,
+        Triangles = 4,
+        TriangleStrip = 5,
+        TriangleFan = 6
     }
 
     public enum BlendingMode
     {
-        ZERO = 0,
-        ONE = 1,
-        SRC_COLOR = 0x300,
-        ONE_MINUS_SRC_COLOR = 0x301,
-        SRC_ALPHA = 0x302,
-        ONE_MINUS_SRC_ALPHA = 0x303,
-        DST_ALPHA = 0x304,
-        ONE_MINUS_DST_ALPHA = 0x305,
-        DST_COLOR = 0x306,
-        ONE_MINUS_DST_COLOR = 0x307,
-        SRC_ALPHA_SATURATE = 0x308,
-        CONSTANT_COLOR = 0x8001,
-        ONE_MINUS_CONSTANT_COLOR = 0x8002,
-        CONSTANT_ALPHA = 0x8003,
-        ONE_MINUS_CONSTANT_ALPHA = 0x8004
+        Zero = 0,
+        One = 1,
+        SrcColor = 0x300,
+        OneMinusSrcColor = 0x301,
+        SrcAlpha = 0x302,
+        OneMinusSrcAlpha = 0x303,
+        DstAlpha = 0x304,
+        OneMinusDstAlpha = 0x305,
+        DstColor = 0x306,
+        OneMinusDstColor = 0x307,
+        SrcAlphaSaturate = 0x308,
+        ConstantColor = 0x8001,
+        OneMinusConstantColor = 0x8002,
+        ConstantAlpha = 0x8003,
+        OneMinusConstantAlpha = 0x8004
     }
 
     public enum BlendingEquation
     {
-        FUNC_ADD = 0x8006,
-        FUNC_SUBTRACT = 0x800A,
-        FUNC_REVERSE_SUBTRACT = 0x800B
+        FuncAdd = 0x8006,
+        FuncSubtract = 0x800A,
+        FuncReverseSubtract = 0x800B
     }
 
     public enum Parameter
     {
-        BLEND_EQUATION = 0x8009,
-        BLEND_EQUATION_RGB = 0x8009,
-        BLEND_EQUATION_ALPHA = 0x883D,
-        BLEND_DST_RGB = 0x80C8,
-        BLEND_SRC_RBG = 0x80C9,
-        BLEND_DST_ALPHA = 0x80CA,
-        BLEND_SRC_ALPHA = 0x80CB,
-        BLEND_COLOR = 0x8005,
-        ARRAY_BUFFER_BINDING = 0x8894,
-        ELEMENT_ARRAY_BUFFER_BINDING = 0x8895,
-        LINE_WIDTH = 0x0B21,
-        ALIASED_POINT_SIZE_RANGE = 0x846D,
-        ALIASED_LINE_WIDTH_RANGE = 0x846E,
-        CULL_FACE_MODE = 0x0B45,
-        FRONT_FACE = 0x0B46,
-        DEPTH_RANGE = 0x0B70,
-        DEPTH_WRITEMASK = 0x0B72,
-        DEPTH_CLEAR_VALUE = 0x0B73,
-        DEPTH_FUNC = 0x0B74,
-        STENCIL_CLEAR_VALUE = 0x0B91,
-        STENCIL_FUNC = 0x0B92,
-        STENCIL_FAIL = 0x0B94,
-        STENCIL_PASS_DEPTH_FAIL = 0x0B95,
-        STENCIL_PASS_DEPTH_PASS = 0x0B96,
-        STENCIL_REF = 0x0B97,
-        STENCIL_VALUE_MASK = 0x0B93,
-        STENCIL_WRITEMASK = 0x0B98,
-        STENCIL_BACK_FUNC = 0x8800,
-        STENCIL_BACK_FAIL = 0x8801,
-        STENCIL_BACK_PASS_DEPTH_FAIL = 0x8802,
-        STENCIL_BACK_PASS_DEPTH_PASS = 0x8803,
-        STENCIL_BACK_REF = 0x8CA3,
-        STENCIL_BACK_VALUE_MASK = 0x8CA4,
-        STENCIL_BACK_WRITEMASK = 0x8CA5,
-        VIEWPORT = 0x0BA2,
-        SCISSOR_BOX = 0x0C10,
-        COLOR_CLEAR_VALUE = 0x0C22,
-        COLOR_WRITEMASK = 0x0C23,
-        UNPACK_ALIGNMENT = 0x0CF5,
-        PACK_ALIGNMENT = 0x0D05,
-        MAX_TEXTURE_SIZE = 0x0D33,
-        MAX_VIEWPORT_DIMS = 0x0D3A,
-        SUBPIXEL_BITS = 0x0D50,
-        RED_BITS = 0x0D52,
-        GREEN_BITS = 0x0D53,
-        BLUE_BITS = 0x0D54,
-        ALPHA_BITS = 0x0D55,
-        DEPTH_BITS = 0x0D56,
-        STENCIL_BITS = 0x0D57,
-        POLYGON_OFFSET_UNITS = 0x2A00,
-        POLYGON_OFFSET_FACTOR = 0x8038,
-        TEXTURE_BINDING_2D = 0x8069,
-        SAMPLE_BUFFERS = 0x80A8,
-        SAMPLES = 0x80A9,
-        SAMPLE_COVERAGE_VALUE = 0x80AA,
-        SAMPLE_COVERAGE_INVERT = 0x80AB,
-        COMPRESSED_TEXTURE_FORMATS = 0x86A3,
-        VENDOR = 0x1F00,
-        RENDERER = 0x1F01,
-        VERSION = 0x1F02,
-        IMPLEMENTATION_COLOR_READ_TYPE = 0x8B9A,
-        IMPLEMENTATION_COLOR_READ_FORMAT = 0x8B9B,
-        BROWSER_DEFAULT_WEBGL = 0x9244,
-        MAX_VERTEX_ATTRIBS = 0x8869,
-        MAX_VERTEX_UNIFORM_VECTORS = 0x8DFB,
-        MAX_VARYING_VECTORS = 0x8DFC,
-        MAX_COMBINED_TEXTURE_IMAGE_UNITS = 0x8B4D,
-        MAX_VERTEX_TEXTURE_IMAGE_UNITS = 0x8B4C,
-        MAX_TEXTURE_IMAGE_UNITS = 0x8872,
-        MAX_FRAGMENT_UNIFORM_VECTORS = 0x8DFD,
-        SHADING_LANGUAGE_VERSION = 0x8B8C,
-        CURRENT_PROGRAM = 0x8B8D,
-        MAX_RENDERBUFFER_SIZE = 0x84E8,
-        FRAMEBUFFER_BINDING = 0x8CA6,
-        RENDERBUFFER_BINDING = 0x8CA7,
-        ACTIVE_TEXTURE = 0x84E0
+        BlendEquation = 0x8009,
+        BlendEquationRgb = 0x8009,
+        BlendEquationAlpha = 0x883D,
+        BlendDstRgb = 0x80C8,
+        BlendSrcRbg = 0x80C9,
+        BlendDstAlpha = 0x80CA,
+        BlendSrcAlpha = 0x80CB,
+        BlendColor = 0x8005,
+        ArrayBufferBinding = 0x8894,
+        ElementArrayBufferBinding = 0x8895,
+        LineWidth = 0x0B21,
+        AliasedPointSizeRange = 0x846D,
+        AliasedLineWidthRange = 0x846E,
+        CullFaceMode = 0x0B45,
+        FrontFace = 0x0B46,
+        DepthRange = 0x0B70,
+        DepthWritemask = 0x0B72,
+        DepthClearValue = 0x0B73,
+        DepthFunc = 0x0B74,
+        StencilClearValue = 0x0B91,
+        StencilFunc = 0x0B92,
+        StencilFail = 0x0B94,
+        StencilPassDepthFail = 0x0B95,
+        StencilPassDepthPass = 0x0B96,
+        StencilRef = 0x0B97,
+        StencilValueMask = 0x0B93,
+        StencilWritemask = 0x0B98,
+        StencilBackFunc = 0x8800,
+        StencilBackFail = 0x8801,
+        StencilBackPassDepthFail = 0x8802,
+        StencilBackPassDepthPass = 0x8803,
+        StencilBackRef = 0x8CA3,
+        StencilBackValueMask = 0x8CA4,
+        StencilBackWritemask = 0x8CA5,
+        Viewport = 0x0BA2,
+        ScissorBox = 0x0C10,
+        ColorClearValue = 0x0C22,
+        ColorWritemask = 0x0C23,
+        UnpackAlignment = 0x0CF5,
+        PackAlignment = 0x0D05,
+        MaxTextureSize = 0x0D33,
+        MaxViewportDims = 0x0D3A,
+        SubpixelBits = 0x0D50,
+        RedBits = 0x0D52,
+        GreenBits = 0x0D53,
+        BlueBits = 0x0D54,
+        AlphaBits = 0x0D55,
+        DepthBits = 0x0D56,
+        StencilBits = 0x0D57,
+        PolygonOffsetUnits = 0x2A00,
+        PolygonOffsetFactor = 0x8038,
+        TextureBinding2D = 0x8069,
+        SampleBuffers = 0x80A8,
+        Samples = 0x80A9,
+        SampleCoverageValue = 0x80AA,
+        SampleCoverageInvert = 0x80AB,
+        CompressedTextureFormats = 0x86A3,
+        Vendor = 0x1F00,
+        Renderer = 0x1F01,
+        Version = 0x1F02,
+        ImplementationColorReadType = 0x8B9A,
+        ImplementationColorReadFormat = 0x8B9B,
+        BrowserDefaultWebgl = 0x9244,
+        MaxVertexAttribs = 0x8869,
+        MaxVertexUniformVectors = 0x8DFB,
+        MaxVaryingVectors = 0x8DFC,
+        MaxCombinedTextureImageUnits = 0x8B4D,
+        MaxVertexTextureImageUnits = 0x8B4C,
+        MaxTextureImageUnits = 0x8872,
+        MaxFragmentUniformVectors = 0x8DFD,
+        ShadingLanguageVersion = 0x8B8C,
+        CurrentProgram = 0x8B8D,
+        MaxRenderbufferSize = 0x84E8,
+        FramebufferBinding = 0x8CA6,
+        RenderbufferBinding = 0x8CA7,
+        ActiveTexture = 0x84E0
     }
 
     public enum BufferUsageHint
     {
-        STATIC_DRAW = 0x88E4,
-        STREAM_DRAW = 0x88E0,
-        DYNAMIC_DRAW = 0x88E8
+        StaticDraw = 0x88E4,
+        StreamDraw = 0x88E0,
+        DynamicDraw = 0x88E8
     }
 
     public enum BufferType
     {
-        ARRAY_BUFFER = 0x8892,
-        ELEMENT_ARRAY_BUFFER = 0x8893
+        ArrayBuffer = 0x8892,
+        ElementArrayBuffer = 0x8893
     }
 
     public enum BufferParameter
     {
-        BUFFER_SIZE = 0x8764,
-        BUFFER_USAGE = 0x8765
+        BufferSize = 0x8764,
+        BufferUsage = 0x8765
     }
 
     public enum VertexAttribute
     {
-        CURRENT_VERTEX_ATTRIB = 0x8626,
-        VERTEX_ATTRIB_ARRAY_ENABLED = 0x8622,
-        VERTEX_ATTRIB_ARRAY_SIZE = 0x8623,
-        VERTEX_ATTRIB_ARRAY_STRIDE = 0x8624,
-        VERTEX_ATTRIB_ARRAY_TYPE = 0x8625,
-        VERTEX_ATTRIB_ARRAY_NORMALIZED = 0x886A,
-        VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F
+        CurrentVertexAttrib = 0x8626,
+        VertexAttribArrayEnabled = 0x8622,
+        VertexAttribArraySize = 0x8623,
+        VertexAttribArrayStride = 0x8624,
+        VertexAttribArrayType = 0x8625,
+        VertexAttribArrayNormalized = 0x886A,
+        VertexAttribArrayBufferBinding = 0x889F
     }
 
     public enum VertexAttributePointer
     {
-        VERTEX_ATTRIB_ARRAY_POINTER = 0x8645
+        VertexAttribArrayPointer = 0x8645
     }
 
     public enum Face
     {
-        FRONT = 0x0404,
-        BACK = 0x0405,
-        FRONT_AND_BACK = 0x0408
+        Front = 0x0404,
+        Back = 0x0405,
+        FrontAndBack = 0x0408
     }
 
     public enum EnableCap
     {
-        CULL_FACE = 0x0B44,
-        BLEND = 0x0BE2,
-        DEPTH_TEST = 0x0B71,
-        DITHER = 0x0BD0,
-        POLYGON_OFFSET_FILL = 0x8037,
-        SAMPLE_ALPHA_TO_COVERAGE = 0x809E,
-        SAMPLE_COVERAGE = 0x80A0,
-        SCISSOR_TEST = 0x0C11,
-        STENCIL_TEST = 0x0B90
+        CullFace = 0x0B44,
+        Blend = 0x0BE2,
+        DepthTest = 0x0B71,
+        Dither = 0x0BD0,
+        PolygonOffsetFill = 0x8037,
+        SampleAlphaToCoverage = 0x809E,
+        SampleCoverage = 0x80A0,
+        ScissorTest = 0x0C11,
+        StencilTest = 0x0B90
     }
 
     public enum Error
     {
-        NO_ERROR = 0,
-        INVALID_ENUM = 0x0500,
-        INVALID_VALUE = 0x0501,
-        INVALID_OPERATION = 0x0502,
-        OUT_OF_MEMORY = 0x0505,
-        CONTEXT_LOST_WEBGL = 0x9242
+        NoError = 0,
+        InvalidEnum = 0x0500,
+        InvalidValue = 0x0501,
+        InvalidOperation = 0x0502,
+        OutOfMemory = 0x0505,
+        ContextLostWebgl = 0x9242
     }
 
     public enum FrontFaceDirection
     {
-        CW = 0x0900,
-        CCW = 0x0901
+        Cw = 0x0900,
+        Ccw = 0x0901
     }
 
     public enum HintMode
     {
-        DONT_CARE = 0x1100,
-        FASTEST = 0x1101,
-        NICEST = 0x1102
+        DontCare = 0x1100,
+        Fastest = 0x1101,
+        Nicest = 0x1102
     }
 
     public enum HintTarget
     {
-        GENERATE_MIPMAP_HINT = 0x8192
+        GenerateMipmapHint = 0x8192
     }
 
     public enum PixelFormat
     {
-        ALPHA = 0x1906,
-        RGB = 0x1907,
-        RGBA = 0x1908,
-        LUMINANCE = 0x1909,
-        LUMINANCE_ALPHA = 0x190A
+        Alpha = 0x1906,
+        Rgb = 0x1907,
+        Rgba = 0x1908,
+        Luminance = 0x1909,
+        LuminanceAlpha = 0x190A
     }
 
     public enum PixelType
     {
-        UNSIGNED_BYTE = 0x1401,
-        UNSIGNED_SHORT_4_4_4_4 = 0x8033,
-        UNSIGNED_SHORT_5_5_5_1 = 0x8034,
-        UNSIGNED_SHORT_5_6_5 = 0x8363,
-        FLOAT = 0x1406
+        UnsignedByte = 0x1401,
+        UnsignedShort4444 = 0x8033,
+        UnsignedShort5551 = 0x8034,
+        UnsignedShort565 = 0x8363,
+        Float = 0x1406
     }
 
     public enum ShaderType
     {
-        FRAGMENT_SHADER = 0x8B30,
-        VERTEX_SHADER = 0x8B31
+        FragmentShader = 0x8B30,
+        VertexShader = 0x8B31
     }
 
     public enum ShaderParameter
     {
-        COMPILE_STATUS = 0x8B81,
-        DELETE_STATUS = 0x8B80,
-        SHADER_TYPE = 0x8B4F
+        CompileStatus = 0x8B81,
+        DeleteStatus = 0x8B80,
+        ShaderType = 0x8B4F
     }
 
     public enum ProgramParameter
     {
-        DELETE_STATUS = 0x8B80,
-        LINK_STATUS = 0x8B82,
-        VALIDATE_STATUS = 0x8B83,
-        ATTACHED_SHADERS = 0x8B85,
-        ACTIVE_ATTRIBUTES = 0x8B89,
-        ACTIVE_UNIFORMS = 0x8B86
+        DeleteStatus = 0x8B80,
+        LinkStatus = 0x8B82,
+        ValidateStatus = 0x8B83,
+        AttachedShaders = 0x8B85,
+        ActiveAttributes = 0x8B89,
+        ActiveUniforms = 0x8B86
     }
 
     public enum CompareFunction
     {
-        NEVER = 0x0200,
-        ALWAYS = 0x0207,
-        LESS = 0x0201,
-        EQUAL = 0x0202,
-        LEQUAL = 0x0203,
-        GREATER = 0x0204,
-        GEQUAL = 0x0206,
-        NOTEQUAL = 0x0205
+        Never = 0x0200,
+        Always = 0x0207,
+        Less = 0x0201,
+        Equal = 0x0202,
+        Lequal = 0x0203,
+        Greater = 0x0204,
+        Gequal = 0x0206,
+        Notequal = 0x0205
     }
 
     public enum StencilFunction
     {
-        KEEP = 0x1E00,
-        REPLACE = 0x1E01,
-        INCR = 0x1E02,
-        DECR = 0x1E03,
-        INVERT = 0x150A,
-        INCR_WRAP = 0x8507,
-        DECR_WRAP = 0x8508
+        Keep = 0x1E00,
+        Replace = 0x1E01,
+        Incr = 0x1E02,
+        Decr = 0x1E03,
+        Invert = 0x150A,
+        IncrWrap = 0x8507,
+        DecrWrap = 0x8508
     }
 
     public enum TextureType
     {
-        TEXTURE_2D = 0x0DE1,
-        TEXTURE_CUBE_MAP = 0x8513,
+        Texture2D = 0x0DE1,
+        TextureCubeMap = 0x8513,
     }
 
     public enum Texture2DType
     {
-        TEXTURE_2D = 0x0DE1,
-        TEXTURE_CUBE_MAP_POSITIVE_X = 0x8515,
-        TEXTURE_CUBE_MAP_NEGATIVE_X = 0x8516,
-        TEXTURE_CUBE_MAP_POSITIVE_Y = 0x8517,
-        TEXTURE_CUBE_MAP_NEGATIVE_Y = 0x8518,
-        TEXTURE_CUBE_MAP_POSITIVE_Z = 0x8519,
-        TEXTURE_CUBE_MAP_NEGATIVE_Z = 0x851A
+        Texture2D = 0x0DE1,
+        TextureCubeMapPositiveX = 0x8515,
+        TextureCubeMapNegativeX = 0x8516,
+        TextureCubeMapPositiveY = 0x8517,
+        TextureCubeMapNegativeY = 0x8518,
+        TextureCubeMapPositiveZ = 0x8519,
+        TextureCubeMapNegativeZ = 0x851A
     }
 
     public enum TextureParameter
     {
-        TEXTURE_MAG_FILTER = 0x2800,
-        TEXTURE_MIN_FILTER = 0x2801,
-        TEXTURE_WRAP_S = 0x2802,
-        TEXTURE_WRAP_T = 0x2803
+        TextureMagFilter = 0x2800,
+        TextureMinFilter = 0x2801,
+        TextureWrapS = 0x2802,
+        TextureWrapT = 0x2803
     }
 
     public enum TextureParameterValue
     {
-        NEAREST = 0x2600,
-        LINEAR = 0x2601,
-        NEAREST_MIPMAP_NEAREST = 0x2700,
-        LINEAR_MIPMAP_NEAREST = 0x2701,
-        NEAREST_MIPMAP_LINEAR = 0x2702,
-        LINEAR_MIPMAP_LINEAR = 0x2703,
-        REPEAT = 0x2901,
-        CLAMP_TO_EDGE = 0x812F,
-        MIRRORED_REPEAT = 0x8370
+        Nearest = 0x2600,
+        Linear = 0x2601,
+        NearestMipmapNearest = 0x2700,
+        LinearMipmapNearest = 0x2701,
+        NearestMipmapLinear = 0x2702,
+        LinearMipmapLinear = 0x2703,
+        Repeat = 0x2901,
+        ClampToEdge = 0x812F,
+        MirroredRepeat = 0x8370
     }
 
     public enum UniformType
     {
-        FLOAT_VEC2 = 0x8B50,
-        FLOAT_VEC3 = 0x8B51,
-        FLOAT_VEC4 = 0x8B52,
-        INT_VEC2 = 0x8B53,
-        INT_VEC3 = 0x8B54,
-        INT_VEC4 = 0x8B55,
-        BOOL = 0x8B56,
-        BOOL_VEC2 = 0x8B57,
-        BOOL_VEC3 = 0x8B58,
-        BOOL_VEC4 = 0x8B59,
-        FLOAT_MAT2 = 0x8B5A,
-        FLOAT_MAT3 = 0x8B5B,
-        FLOAT_MAT4 = 0x8B5C,
-        SAMPLER_2D = 0x8B5E,
-        SAMPLER_CUBE = 0x8B60
+        FloatVec2 = 0x8B50,
+        FloatVec3 = 0x8B51,
+        FloatVec4 = 0x8B52,
+        IntVec2 = 0x8B53,
+        IntVec3 = 0x8B54,
+        IntVec4 = 0x8B55,
+        Bool = 0x8B56,
+        BoolVec2 = 0x8B57,
+        BoolVec3 = 0x8B58,
+        BoolVec4 = 0x8B59,
+        FloatMat2 = 0x8B5A,
+        FloatMat3 = 0x8B5B,
+        FloatMat4 = 0x8B5C,
+        Sampler2D = 0x8B5E,
+        SamplerCube = 0x8B60
     }
 
     public enum ShaderPrecision
     {
-        LOW_FLOAT = 0x8DF0,
-        MEDIUM_FLOAT = 0x8DF1,
-        HIGH_FLOAT = 0x8DF2,
-        LOW_INT = 0x8DF3,
-        MEDIUM_INT = 0x8DF4,
-        HIGH_INT = 0x8DF5
+        LowFloat = 0x8DF0,
+        MediumFloat = 0x8DF1,
+        HighFloat = 0x8DF2,
+        LowInt = 0x8DF3,
+        MediumInt = 0x8DF4,
+        HighInt = 0x8DF5
     }
 
     public enum RenderbufferType
     {
-        RENDERBUFFER = 0x8D41
+        Renderbuffer = 0x8D41
     }
 
     public enum FramebufferType
     {
-        FRAMEBUFFER = 0x8D40
+        Framebuffer = 0x8D40
     }
 
     public enum RenderbufferParameter
     {
-        RENDERBUFFER_WIDTH = 0x8D42,
-        RENDERBUFFER_HEIGHT = 0x8D43,
-        RENDERBUFFER_INTERNAL_FORMAT = 0x8D44,
-        RENDERBUFFER_RED_SIZE = 0x8D50,
-        RENDERBUFFER_GREEN_SIZE = 0x8D51,
-        RENDERBUFFER_BLUE_SIZE = 0x8D52,
-        RENDERBUFFER_ALPHA_SIZE = 0x8D53,
-        RENDERBUFFER_DEPTH_SIZE = 0x8D54,
-        RENDERBUFFER_STENCIL_SIZE = 0x8D55
+        RenderbufferWidth = 0x8D42,
+        RenderbufferHeight = 0x8D43,
+        RenderbufferInternalFormat = 0x8D44,
+        RenderbufferRedSize = 0x8D50,
+        RenderbufferGreenSize = 0x8D51,
+        RenderbufferBlueSize = 0x8D52,
+        RenderbufferAlphaSize = 0x8D53,
+        RenderbufferDepthSize = 0x8D54,
+        RenderbufferStencilSize = 0x8D55
     }
 
     public enum FramebufferAttachment
     {
-        COLOR_ATTACHMENT0 = 0x8CE0,
-        DEPTH_ATTACHMENT = 0x8D00,
-        STENCIL_ATTACHMENT = 0x8D20,
-        DEPTH_STENCIL_ATTACHMENT = 0x821A
+        ColorAttachment0 = 0x8CE0,
+        DepthAttachment = 0x8D00,
+        StencilAttachment = 0x8D20,
+        DepthStencilAttachment = 0x821A
     }
 
     public enum FramebufferAttachmentParameter
     {
-        FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE = 0x8CD0,
-        FRAMEBUFFER_ATTACHMENT_OBJECT_NAME = 0x8CD1,
-        FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL = 0x8CD2,
-        FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE = 0x8CD3
+        FramebufferAttachmentObjectType = 0x8CD0,
+        FramebufferAttachmentObjectName = 0x8CD1,
+        FramebufferAttachmentTextureLevel = 0x8CD2,
+        FramebufferAttachmentTextureCubeMapFace = 0x8CD3
     }
 
     public enum FramebufferStatus
     {
-        NONE = 0,
-        FRAMEBUFFER_COMPLETE = 0x8CD5,
-        FRAMEBUFFER_INCOMPLETE_ATTACHMENT = 0x8CD6,
-        FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT = 0x8CD7,
-        FRAMEBUFFER_INCOMPLETE_DIMENSIONS = 0x8CD9,
-        FRAMEBUFFER_UNSUPPORTED = 0x8CDD
+        None = 0,
+        FramebufferComplete = 0x8CD5,
+        FramebufferIncompleteAttachment = 0x8CD6,
+        FramebufferIncompleteMissingAttachment = 0x8CD7,
+        FramebufferIncompleteDimensions = 0x8CD9,
+        FramebufferUnsupported = 0x8CDD
     }
 
     public enum PixelStorageMode
     {
-        UNPACK_FLIP_Y_WEBGL = 0x9240,
-        UNPACK_PREMULTIPLY_ALPHA_WEBGL = 0x9241,
-        UNPACK_COLORSPACE_CONVERSION_WEBGL = 0x9243
+        UnpackFlipYWebgl = 0x9240,
+        UnpackPremultiplyAlphaWebgl = 0x9241,
+        UnpackColorspaceConversionWebgl = 0x9243
     }
 
     public enum RenderbufferFormat
     {
-        RGBA4 = 0x8056,
-        RGB5_A1 = 0x8057,
-        RGB565 = 0x8D62,
-        DEPTH_COMPONENT16 = 0x81A5,
-        STENCIL_INDEX8 = 0x8D48,
-        DEPTH_STENCIL = 0x84F9
+        Rgba4 = 0x8056,
+        Rgb5A1 = 0x8057,
+        Rgb565 = 0x8D62,
+        DepthComponent16 = 0x81A5,
+        StencilIndex8 = 0x8D48,
+        DepthStencil = 0x84F9
     }
 
     public enum DataType
     {
-        BYTE = 0x1400,
-        UNSIGNED_BYTE = 0x1401,
-        SHORT = 0x1402,
-        UNSIGNED_SHORT = 0x1403,
-        INT = 0x1404,
-        UNSIGNED_INT = 0x1405,
-        FLOAT = 0x1406
+        Byte = 0x1400,
+        UnsignedByte = 0x1401,
+        Short = 0x1402,
+        UnsignedShort = 0x1403,
+        Int = 0x1404,
+        UnsignedInt = 0x1405,
+        Float = 0x1406
     }
 
     public enum Texture
     {
-        TEXTURE0 = 0x84C0,
-        TEXTURE1,
-        TEXTURE2,
-        TEXTURE3,
-        TEXTURE4,
-        TEXTURE5,
-        TEXTURE6,
-        TEXTURE7,
-        TEXTURE8,
-        TEXTURE9,
-        TEXTURE10,
-        TEXTURE11,
-        TEXTURE12,
-        TEXTURE13,
-        TEXTURE14,
-        TEXTURE15,
-        TEXTURE16,
-        TEXTURE17,
-        TEXTURE18,
-        TEXTURE19,
-        TEXTURE20,
-        TEXTURE21,
-        TEXTURE22,
-        TEXTURE23,
-        TEXTURE24,
-        TEXTURE25,
-        TEXTURE26,
-        TEXTURE27,
-        TEXTURE28,
-        TEXTURE29,
-        TEXTURE30,
-        TEXTURE31
+        Texture0 = 0x84C0,
+        Texture1,
+        Texture2,
+        Texture3,
+        Texture4,
+        Texture5,
+        Texture6,
+        Texture7,
+        Texture8,
+        Texture9,
+        Texture10,
+        Texture11,
+        Texture12,
+        Texture13,
+        Texture14,
+        Texture15,
+        Texture16,
+        Texture17,
+        Texture18,
+        Texture19,
+        Texture20,
+        Texture21,
+        Texture22,
+        Texture23,
+        Texture24,
+        Texture25,
+        Texture26,
+        Texture27,
+        Texture28,
+        Texture29,
+        Texture30,
+        Texture31
     }
 }

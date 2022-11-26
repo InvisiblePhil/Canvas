@@ -1,4 +1,4 @@
-namespace Blazor.Extensions.Canvas.Model
+namespace Blazor.Extensions.Model
 {
     public class TextMetrics
     {
