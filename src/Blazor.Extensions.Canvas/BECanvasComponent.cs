@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
-using Microsoft.AspNetCore.Components.Web;
+using System.Collections.Generic;
 
 namespace Blazor.Extensions
 {
@@ -13,49 +13,12 @@ namespace Blazor.Extensions
         [Parameter]
         public long Width { get; set; }
 
-        [Parameter]
-        public string Style { get; set; } = string.Empty;
+        [Parameter(CaptureUnmatchedValues = true)]
+        public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>();
 
         [Parameter]
-        public string Class { get; set; } = string.Empty;
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        [Parameter]
-        public Action<MouseEventArgs> OnClick { get; set; }
-
-        [Parameter]
-        public Action<MouseEventArgs> OnContextMenu { get; set; }
-
-        [Parameter]
-        public Action<MouseEventArgs> OnDblClick { get; set; }
-
-        [Parameter]
-        public Action<MouseEventArgs> OnMouseDown { get; set; }
-
-        [Parameter]
-        public Action<MouseEventArgs> OnMouseMove { get; set; }
-
-        [Parameter]
-        public Action<MouseEventArgs> OnMouseOut { get; set; }
-
-        [Parameter]
-        public Action<MouseEventArgs> OnMouseOver { get; set; }
-
-        [Parameter]
-        public Action<MouseEventArgs> OnMouseUp { get; set; }
-
-        [Parameter]
-        public Action<MouseEventArgs> OnMouseWheel { get; set; }
-
-        [Parameter]
-        public Action<PointerEventArgs> OnPointerDown { get; set; }
-
-        [Parameter]
-        public Action<PointerEventArgs> OnPointerUp { get; set; }
-
-        [Parameter]
-        public Action<PointerEventArgs> OnPointerMove { get; set; }
-
-        protected readonly string Id = Guid.NewGuid().ToString();
         protected ElementReference canvasRef;
 
         public ElementReference CanvasReference => this.canvasRef;
