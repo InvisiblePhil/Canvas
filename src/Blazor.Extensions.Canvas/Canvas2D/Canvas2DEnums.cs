@@ -1,50 +1,49 @@
-namespace Blazor.Extensions.Canvas2D
+namespace Blazor.Extensions.Canvas2D;
+
+public enum TextAlign
 {
-    public enum TextAlign
-    {
-        Start,
-        End,
-        Left,
-        Right,
-        Center
-    }
+    Start,
+    End,
+    Left,
+    Right,
+    Center
+}
 
-    public enum TextBaseline
-    {
-        Alphabetic,
-        Top,
-        Hanging,
-        Middle,
-        Ideographic,
-        Bottom
-    }
+public enum TextBaseline
+{
+    Alphabetic,
+    Top,
+    Hanging,
+    Middle,
+    Ideographic,
+    Bottom
+}
 
-    public enum TextDirection
-    {
-        Inherit,
-        LTR,
-        RTL
-    }
+public enum TextDirection
+{
+    Inherit,
+    LTR,
+    RTL
+}
 
-    public enum LineCap
-    {
-        Butt,
-        Round,
-        Square
-    }
+public enum LineCap
+{
+    Butt,
+    Round,
+    Square
+}
 
-    public enum LineJoin
-    {
-        Miter,
-        Round,
-        Bevel
-    }
+public enum LineJoin
+{
+    Miter,
+    Round,
+    Bevel
+}
 
-    public enum RepeatPattern
-    {
-        Repeat = 0,
-        RepeatX,
-        RepeatY,
-        NoRepeat
-    }
+public enum RepeatPattern
+{
+    Repeat = 0,
+    RepeatX,
+    RepeatY,
+    NoRepeat
 }
