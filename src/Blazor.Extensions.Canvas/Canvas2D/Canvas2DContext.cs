@@ -37,6 +37,7 @@ namespace Blazor.Extensions.Canvas2D
         private const string ArcMethod = "arc";
         private const string ArcToMethod = "arcTo";
         private const string RectMethod = "rect";
+        private const string EllipseMethod = "ellipse";
         private const string FillMethod = "fill";
         private const string StrokeMethod = "stroke";
         private const string DrawFocusIfNeededMethod = "drawFocusIfNeeded";
@@ -280,6 +281,8 @@ namespace Blazor.Extensions.Canvas2D
         [Obsolete("Use the async version instead, which is already called internally.")]
         public void Rect(double x, double y, double width, double height) => this.CallMethod<object>(RectMethod, x, y, width, height);
         public async Task RectAsync(double x, double y, double width, double height) => await this.BatchCallAsync(RectMethod, isMethodCall: true, x, y, width, height);
+
+        public async Task EllipseAsync(double x, double y, double radiusX, double radiusY, double startAngle, double endAngle, bool counterClockwise = false) => await this.BatchCallAsync(EllipseMethod, isMethodCall: true, x, y, radiusX, radiusY, startAngle, endAngle, counterClockwise);
 
         [Obsolete("Use the async version instead, which is already called internally.")]
         public void Fill() => this.CallMethod<object>(FillMethod);
