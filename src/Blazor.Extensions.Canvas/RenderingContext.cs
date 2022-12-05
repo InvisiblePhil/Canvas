@@ -15,11 +15,11 @@ public abstract class RenderingContext : IAsyncDisposable
     private const string CallBatchAction = "callBatch";
     private const string AddAction = "add";
     private const string RemoveAction = "remove";
-    private readonly List<object[]> batchedCallObjects = new List<object[]>();
+    private readonly List<object[]> batchedCallObjects = new();
     private readonly string contextName;
     private readonly IJSRuntime jsRuntime;
     private readonly object parameters;
-    private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+    private readonly SemaphoreSlim semaphoreSlim = new(1, 1);
 
     private bool awaitingBatchedCall;
     private bool batching;

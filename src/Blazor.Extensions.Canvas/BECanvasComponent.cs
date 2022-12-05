@@ -14,7 +14,7 @@ public class BECanvasComponent : ComponentBase
     public long Width { get; set; }
 
     [Parameter(CaptureUnmatchedValues = true)]
-    public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>();
+    public Dictionary<string, object> InputAttributes { get; set; } = new();
 
     [Parameter]
     public string Id { get; set; } = Guid.NewGuid().ToString();
