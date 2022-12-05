@@ -35,9 +35,9 @@ namespace Blazor.Extensions
             this.parameters = parameters;
         }
 
-        protected virtual Task ExtendedInitializeAsync() => Task.CompletedTask;
+        protected virtual ValueTask ExtendedInitializeAsync() => ValueTask.CompletedTask;
 
-        internal async Task<RenderingContext> InitializeAsync()
+        internal async ValueTask<RenderingContext> InitializeAsync()
         {
             await this.semaphoreSlim.WaitAsync();
             if (!this.initialized)
@@ -52,21 +52,21 @@ namespace Blazor.Extensions
 
         #region Protected Methods
 
-        public async Task BeginBatchAsync()
+        public async ValueTask BeginBatchAsync()
         {
             await this.semaphoreSlim.WaitAsync();
             this.batching = true;
             this.semaphoreSlim.Release();
         }
 
-        public async Task EndBatchAsync()
+        public async ValueTask EndBatchAsync()
         {
             await this.semaphoreSlim.WaitAsync();
 
             await this.BatchCallInnerAsync();
         }
 
-        protected async Task BatchCallAsync(string name, bool isMethodCall, params object[] value)
+        protected async ValueTask BatchCallAsync(string name, bool isMethodCall, params object[] value)
         {
             await this.semaphoreSlim.WaitAsync();
 
@@ -86,32 +86,22 @@ namespace Blazor.Extensions
             }
         }
 
-        protected async Task<T> GetPropertyAsync<T>(string property)
+        protected async ValueTask<T> GetPropertyAsync<T>(string property)
         {
             return await this.jsRuntime.InvokeAsync<T>($"{NamespacePrefix}.{this.contextName}.{GetPropertyAction}", this.Canvas, property);
         }
 
-        protected T CallMethod<T>(string method)
-        {
-            return this.CallMethodAsync<T>(method).GetAwaiter().GetResult();
-        }
-
-        protected async Task<T> CallMethodAsync<T>(string method)
+        protected async ValueTask<T> CallMethodAsync<T>(string method)
         {
             return await this.jsRuntime.InvokeAsync<T>($"{NamespacePrefix}.{this.contextName}.{CallMethodAction}", this.Canvas, method);
         }
 
-        protected T CallMethod<T>(string method, params object[] value)
-        {
-            return this.CallMethodAsync<T>(method, value).GetAwaiter().GetResult();
-        }
-
-        protected async Task<T> CallMethodAsync<T>(string method, params object[] value)
+        protected async ValueTask<T> CallMethodAsync<T>(string method, params object[] value)
         {
             return await this.jsRuntime.InvokeAsync<T>($"{NamespacePrefix}.{this.contextName}.{CallMethodAction}", this.Canvas, method, value);
         }
 
-        private async Task BatchCallInnerAsync()
+        private async ValueTask BatchCallInnerAsync()
         {
             this.awaitingBatchedCall = true;
             var currentBatch = this.batchedCallObjects.ToArray();

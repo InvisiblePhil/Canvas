@@ -62,7 +62,7 @@ namespace Blazor.Extensions.Canvas.Test.ServerSide.Pages
             await this.context.EndBatchAsync();
         }
 
-        private async Task<WebGlProgram> InitProgramAsync(WebGlContext gl, string vsSource, string fsSource)
+        private async ValueTask<WebGlProgram> InitProgramAsync(WebGlContext gl, string vsSource, string fsSource)
         {
             var vertexShader = await this.LoadShaderAsync(gl, ShaderType.VertexShader, vsSource);
             var fragmentShader = await this.LoadShaderAsync(gl, ShaderType.FragmentShader, fsSource);
@@ -84,7 +84,7 @@ namespace Blazor.Extensions.Canvas.Test.ServerSide.Pages
             return program;
         }
 
-        private async Task<WebGlShader> LoadShaderAsync(WebGlContext gl, ShaderType type, string source)
+        private async ValueTask<WebGlShader> LoadShaderAsync(WebGlContext gl, ShaderType type, string source)
         {
             var shader = await gl.CreateShaderAsync(type);
 
