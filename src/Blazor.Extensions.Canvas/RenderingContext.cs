@@ -7,7 +7,7 @@ using Microsoft.JSInterop;
 
 namespace Blazor.Extensions;
 
-public abstract class RenderingContext : IAsyncDisposable
+public abstract class RenderingContext : IDisposable
 {
     private const string NamespacePrefix = "BlazorExtensions";
     private const string GetPropertyAction = "getProperty";
@@ -122,10 +122,10 @@ public abstract class RenderingContext : IAsyncDisposable
         this.semaphoreSlim.Release();
     }
 
-    public async ValueTask DisposeAsync()
+    public void Dispose()
     {
-        await this.jsRuntime.InvokeAsync<object>($"{NamespacePrefix}.{this.contextName}.{RemoveAction}",
-            this.Canvas).ConfigureAwait(false);
+        Task.Run(() => this.jsRuntime.InvokeAsync<object>($"{NamespacePrefix}.{this.contextName}.{RemoveAction}",
+            this.Canvas));
     }
 
     #endregion
